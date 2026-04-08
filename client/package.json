@@ -48,6 +48,7 @@
     "embla-carousel-react": "^8.5.1",
     "input-otp": "^1.4.1",
     "json-bigint": "^1.0.0",
+    "jspdf": "^4.2.1",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "lucide-react": "^0.460.0",
