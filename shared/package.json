@@ -33,7 +33,7 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
-    "postinstall": "npm run build",
+    // "postinstall": "npm run build",
     "lint": "eslint . --format json"
   },
   "dependencies": {
