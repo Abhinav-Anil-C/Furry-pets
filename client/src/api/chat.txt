@@ -1,0 +1,73 @@
+import api from './api';
+import { ChatMessage } from '@/types/chat';
+
+// Description: Send a message to the AI chatbot
+// Endpoint: POST /api/chat/message
+// Request: { message: string }
+// Response: { reply: string }
+export const sendChatMessage = async (message: string) => {
+  // Mocking the response
+  return new Promise<{ reply: string }>((resolve) => {
+    setTimeout(() => {
+      const responses = [
+        "Dogs should be fed 2-3 times a day depending on their age and size. Puppies need more frequent meals, while adult dogs do well with twice-daily feeding.",
+        "Regular exercise is crucial for your dog's health. Most dogs need at least 30 minutes to 2 hours of exercise daily, depending on their breed and energy level.",
+        "Signs of anxiety in dogs include excessive barking, destructive behavior, pacing, panting, and trembling. Creating a calm environment and consistent routine can help.",
+        "Training should start early and use positive reinforcement. Be consistent, patient, and reward good behavior with treats and praise.",
+        "Yes, chocolate is toxic to dogs and can cause serious health issues. Keep all chocolate products away from your pets.",
+        "To reduce excessive barking, identify the cause (boredom, anxiety, attention-seeking) and address it. Training, exercise, and mental stimulation can help.",
+      ];
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      resolve({ reply: randomResponse });
+    }, 1500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.post('/api/chat/message', { message });
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Get chat history
+// Endpoint: GET /api/chat/history
+// Request: {}
+// Response: { messages: ChatMessage[] }
+export const getChatHistory = async () => {
+  // Mocking the response
+  return new Promise<{ messages: ChatMessage[] }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        messages: [],
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.get('/api/chat/history');
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Clear chat history
+// Endpoint: DELETE /api/chat/history
+// Request: {}
+// Response: { message: string }
+export const clearChatHistory = async () => {
+  // Mocking the response
+  return new Promise<{ message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({ message: 'Chat history cleared successfully!' });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.delete('/api/chat/history');
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};

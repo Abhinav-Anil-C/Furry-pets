@@ -1,0 +1,73 @@
+import api from './api';
+
+export interface UserProfile {
+  _id: string;
+  name: string;
+  email: string;
+  location: string;
+  photo: string;
+  memberSince: string;
+}
+
+export interface UpdateProfileData {
+  name: string;
+  location: string;
+  photo: string;
+}
+
+// Description: Get user profile
+// Endpoint: GET /api/profile
+// Request: {}
+// Response: { profile: UserProfile }
+export const getProfile = async () => {
+  // Mocking the response
+  return new Promise<{ profile: UserProfile }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        profile: {
+          _id: 'user1',
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          location: 'New York, USA',
+          photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
+          memberSince: '2024-01-01T00:00:00Z',
+        },
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.get('/api/profile');
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Update user profile
+// Endpoint: PUT /api/profile
+// Request: { profile: UpdateProfileData }
+// Response: { profile: UserProfile, message: string }
+export const updateProfile = async (data: UpdateProfileData) => {
+  // Mocking the response
+  return new Promise<{ profile: UserProfile; message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        profile: {
+          _id: 'user1',
+          email: 'john.doe@example.com',
+          memberSince: '2024-01-01T00:00:00Z',
+          ...data,
+        },
+        message: 'Profile updated successfully!',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.put('/api/profile', data);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};

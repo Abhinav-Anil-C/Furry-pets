@@ -1,0 +1,239 @@
+import api from './api';
+import { Appointment, AppointmentFormData } from '@/types/appointment';
+
+// Description: Get all appointments for the current user
+// Endpoint: GET /api/appointments
+// Request: {}
+// Response: { appointments: Appointment[] }
+export const getAppointments = async () => {
+  // Mocking the response
+  return new Promise<{ appointments: Appointment[] }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        appointments: [
+          {
+            _id: '1',
+            petId: '1',
+            petName: 'Max',
+            petPhoto: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+            type: 'Vaccination',
+            date: '2024-04-15',
+            time: '10:00',
+            location: 'Happy Paws Veterinary Clinic',
+            notes: 'Annual vaccination checkup',
+            reminder: true,
+            reminderTime: '1 day before',
+            completed: false,
+            userId: 'user1',
+            createdAt: '2024-03-10T10:00:00Z',
+            updatedAt: '2024-03-10T10:00:00Z',
+          },
+          {
+            _id: '2',
+            petId: '2',
+            petName: 'Bella',
+            petPhoto: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400',
+            type: 'Grooming',
+            date: '2024-04-20',
+            time: '14:30',
+            location: 'Pet Spa & Grooming',
+            notes: 'Full grooming session',
+            reminder: true,
+            reminderTime: '2 hours before',
+            completed: false,
+            userId: 'user1',
+            createdAt: '2024-03-12T10:00:00Z',
+            updatedAt: '2024-03-12T10:00:00Z',
+          },
+          {
+            _id: '3',
+            petId: '1',
+            petName: 'Max',
+            petPhoto: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+            type: 'Checkup',
+            date: '2024-03-10',
+            time: '11:00',
+            location: 'Happy Paws Veterinary Clinic',
+            notes: 'Regular health checkup',
+            reminder: false,
+            reminderTime: '',
+            completed: true,
+            userId: 'user1',
+            createdAt: '2024-02-25T10:00:00Z',
+            updatedAt: '2024-03-10T11:30:00Z',
+          },
+        ],
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.get('/api/appointments');
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Get a single appointment by ID
+// Endpoint: GET /api/appointments/:id
+// Request: { id: string }
+// Response: { appointment: Appointment }
+export const getAppointmentById = async (id: string) => {
+  // Mocking the response
+  return new Promise<{ appointment: Appointment }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        appointment: {
+          _id: id,
+          petId: '1',
+          petName: 'Max',
+          petPhoto: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+          type: 'Vaccination',
+          date: '2024-04-15',
+          time: '10:00',
+          location: 'Happy Paws Veterinary Clinic',
+          notes: 'Annual vaccination checkup',
+          reminder: true,
+          reminderTime: '1 day before',
+          completed: false,
+          userId: 'user1',
+          createdAt: '2024-03-10T10:00:00Z',
+          updatedAt: '2024-03-10T10:00:00Z',
+        },
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.get(`/api/appointments/${id}`);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Create a new appointment
+// Endpoint: POST /api/appointments
+// Request: { appointment: AppointmentFormData }
+// Response: { appointment: Appointment, message: string }
+export const createAppointment = async (data: AppointmentFormData) => {
+  // Mocking the response
+  return new Promise<{ appointment: Appointment; message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        appointment: {
+          _id: Date.now().toString(),
+          petName: 'Max',
+          petPhoto: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+          ...data,
+          completed: false,
+          userId: 'user1',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+        message: 'Appointment scheduled successfully!',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.post('/api/appointments', data);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Update an existing appointment
+// Endpoint: PUT /api/appointments/:id
+// Request: { id: string, appointment: AppointmentFormData }
+// Response: { appointment: Appointment, message: string }
+export const updateAppointment = async (id: string, data: AppointmentFormData) => {
+  // Mocking the response
+  return new Promise<{ appointment: Appointment; message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        appointment: {
+          _id: id,
+          petName: 'Max',
+          petPhoto: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+          ...data,
+          completed: false,
+          userId: 'user1',
+          createdAt: '2024-03-10T10:00:00Z',
+          updatedAt: new Date().toISOString(),
+        },
+        message: 'Appointment updated successfully!',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.put(`/api/appointments/${id}`, data);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Delete an appointment
+// Endpoint: DELETE /api/appointments/:id
+// Request: { id: string }
+// Response: { message: string }
+export const deleteAppointment = async (id: string) => {
+  // Mocking the response
+  return new Promise<{ message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        message: 'Appointment deleted',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.delete(`/api/appointments/${id}`);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Mark appointment as complete
+// Endpoint: PATCH /api/appointments/:id/complete
+// Request: { id: string }
+// Response: { appointment: Appointment, message: string }
+export const markAppointmentComplete = async (id: string) => {
+  // Mocking the response
+  return new Promise<{ appointment: Appointment; message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        appointment: {
+          _id: id,
+          petId: '1',
+          petName: 'Max',
+          petPhoto: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+          type: 'Vaccination',
+          date: '2024-04-15',
+          time: '10:00',
+          location: 'Happy Paws Veterinary Clinic',
+          notes: 'Annual vaccination checkup',
+          reminder: true,
+          reminderTime: '1 day before',
+          completed: true,
+          userId: 'user1',
+          createdAt: '2024-03-10T10:00:00Z',
+          updatedAt: new Date().toISOString(),
+        },
+        message: 'Appointment marked as complete',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.patch(`/api/appointments/${id}/complete`);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};

@@ -1,0 +1,51 @@
+import LostPet from "../models/LostPet";
+
+// Service to create a new lost pet report
+export const createLostPet = async (data: any) => {
+  try {
+    // Create a new pet with the data provided
+    const pet = new LostPet(data);
+    
+    // Default status is "lost" when reporting
+    if (!pet.status) pet.status = "lost";
+    
+    // Save and return the newly created pet
+    return await pet.save();
+  } catch (error) {
+    console.error("Error while creating lost pet:", error);
+    throw new Error("Failed to report the lost pet.");
+  }
+};
+
+// Service to fetch all lost pets that are still missing
+export const getLostPets = async () => {
+  try {
+    // Fetch only pets that are marked as lost and sort them by creation date in descending order
+    return await LostPet.find({ status: "lost" }).sort({ createdAt: -1 });
+  } catch (error) {
+    console.error("Error while fetching lost pets:", error);
+    throw new Error("Failed to fetch lost pets.");
+  }
+};
+
+// Service to mark a lost pet as found
+export const markPetAsFound = async (id: string) => {
+  try {
+    // Find and update the pet's status to "found"
+    const pet = await LostPet.findByIdAndUpdate(
+      id,
+      { status: "found" },
+      { new: true } // Return the updated document
+    );
+
+    // If no pet is found, throw an error
+    if (!pet) {
+      throw new Error("Pet not found");
+    }
+
+    return pet;
+  } catch (error) {
+    console.error("Error while marking pet as found:", error);
+    throw new Error("Failed to update pet status.");
+  }
+};

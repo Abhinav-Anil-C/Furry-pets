@@ -1,0 +1,190 @@
+import api from './api';
+import { Pet, PetFormData } from '@/types/pet';
+
+// Description: Get all pets for the current user
+// Endpoint: GET /api/pets
+// Request: {}
+// Response: { pets: Pet[] }
+export const getPets = async () => {
+  // Mocking the response
+  return new Promise<{ pets: Pet[] }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        pets: [
+          {
+            _id: '1',
+            name: 'Max',
+            age: 3,
+            breed: 'Golden Retriever',
+            color: 'Golden',
+            weight: 30,
+            weightUnit: 'kg',
+            height: 60,
+            heightUnit: 'cm',
+            healthNotes: 'Healthy and active. Loves to play fetch.',
+            photo: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+            userId: 'user1',
+            createdAt: '2024-01-15T10:00:00Z',
+            updatedAt: '2024-01-15T10:00:00Z',
+          },
+          {
+            _id: '2',
+            name: 'Bella',
+            age: 2,
+            breed: 'Labrador',
+            color: 'Black',
+            weight: 25,
+            weightUnit: 'kg',
+            height: 55,
+            heightUnit: 'cm',
+            healthNotes: 'Very energetic. Needs regular exercise.',
+            photo: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400',
+            userId: 'user1',
+            createdAt: '2024-02-10T10:00:00Z',
+            updatedAt: '2024-02-10T10:00:00Z',
+          },
+          {
+            _id: '3',
+            name: 'Charlie',
+            age: 5,
+            breed: 'Beagle',
+            color: 'Brown and White',
+            weight: 12,
+            weightUnit: 'kg',
+            height: 38,
+            heightUnit: 'cm',
+            healthNotes: 'Friendly and curious. Loves treats.',
+            photo: 'https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=400',
+            userId: 'user1',
+            createdAt: '2024-03-05T10:00:00Z',
+            updatedAt: '2024-03-05T10:00:00Z',
+          },
+        ],
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.get('/api/pets');
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Get a single pet by ID
+// Endpoint: GET /api/pets/:id
+// Request: { id: string }
+// Response: { pet: Pet }
+export const getPetById = async (id: string) => {
+  // Mocking the response
+  return new Promise<{ pet: Pet }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        pet: {
+          _id: id,
+          name: 'Max',
+          age: 3,
+          breed: 'Golden Retriever',
+          color: 'Golden',
+          weight: 30,
+          weightUnit: 'kg',
+          height: 60,
+          heightUnit: 'cm',
+          healthNotes: 'Healthy and active. Loves to play fetch.',
+          photo: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+          userId: 'user1',
+          createdAt: '2024-01-15T10:00:00Z',
+          updatedAt: '2024-01-15T10:00:00Z',
+        },
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.get(`/api/pets/${id}`);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Create a new pet
+// Endpoint: POST /api/pets
+// Request: { pet: PetFormData }
+// Response: { pet: Pet, message: string }
+export const createPet = async (data: PetFormData) => {
+  // Mocking the response
+  return new Promise<{ pet: Pet; message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        pet: {
+          _id: Date.now().toString(),
+          ...data,
+          userId: 'user1',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+        message: 'Pet added successfully!',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.post('/api/pets', data);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Update an existing pet
+// Endpoint: PUT /api/pets/:id
+// Request: { id: string, pet: PetFormData }
+// Response: { pet: Pet, message: string }
+export const updatePet = async (id: string, data: PetFormData) => {
+  // Mocking the response
+  return new Promise<{ pet: Pet; message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        pet: {
+          _id: id,
+          ...data,
+          userId: 'user1',
+          createdAt: '2024-01-15T10:00:00Z',
+          updatedAt: new Date().toISOString(),
+        },
+        message: 'Pet updated successfully!',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.put(`/api/pets/${id}`, data);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Delete a pet
+// Endpoint: DELETE /api/pets/:id
+// Request: { id: string }
+// Response: { message: string }
+export const deletePet = async (id: string) => {
+  // Mocking the response
+  return new Promise<{ message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        message: 'Pet has been removed',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.delete(`/api/pets/${id}`);
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};

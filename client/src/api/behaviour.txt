@@ -1,0 +1,116 @@
+import api from './api';
+import { BehaviorDetection, BehaviorAnalysisResult } from '@/types/behavior';
+
+// Description: Analyze dog behavior from image
+// Endpoint: POST /api/behavior/analyze
+// Request: { image: string (base64) }
+// Response: { result: BehaviorAnalysisResult }
+export const analyzeBehavior = async (image: string) => {
+  // Mocking the response
+  return new Promise<{ result: BehaviorAnalysisResult }>((resolve) => {
+    setTimeout(() => {
+      const behaviors = [
+        { behavior: 'Happy', emoji: '🐶', description: 'Your dog appears to be happy and content. Tail wagging and relaxed posture indicate positive emotions.' },
+        { behavior: 'Angry', emoji: '😡', description: 'Your dog shows signs of aggression or anger. Look for bared teeth, stiff posture, and intense staring.' },
+        { behavior: 'Sad', emoji: '😔', description: 'Your dog seems sad or depressed. Low energy, droopy ears, and lack of interest in activities may indicate this.' },
+        { behavior: 'Sleeping', emoji: '💤', description: 'Your dog is resting peacefully. Dogs need 12-14 hours of sleep per day for optimal health.' },
+        { behavior: 'Barking', emoji: '🐕', description: 'Your dog is barking, which could indicate excitement, alertness, or a need for attention.' },
+      ];
+      const randomBehavior = behaviors[Math.floor(Math.random() * behaviors.length)];
+      resolve({
+        result: {
+          ...randomBehavior,
+          confidence: Math.floor(Math.random() * 20) + 80,
+        },
+      });
+    }, 2000);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.post('/api/behavior/analyze', { image });
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Get behavior detection history
+// Endpoint: GET /api/behavior/history
+// Request: {}
+// Response: { detections: BehaviorDetection[] }
+export const getBehaviorHistory = async () => {
+  // Mocking the response
+  return new Promise<{ detections: BehaviorDetection[] }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        detections: [
+          {
+            _id: '1',
+            userId: 'user1',
+            image: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400',
+            behavior: 'Happy',
+            confidence: 95,
+            description: 'Your dog appears to be happy and content.',
+            createdAt: '2024-03-15T14:30:00Z',
+          },
+          {
+            _id: '2',
+            userId: 'user1',
+            image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400',
+            behavior: 'Sleeping',
+            confidence: 88,
+            description: 'Your dog is resting peacefully.',
+            createdAt: '2024-03-14T10:15:00Z',
+          },
+          {
+            _id: '3',
+            userId: 'user1',
+            image: 'https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=400',
+            behavior: 'Barking',
+            confidence: 92,
+            description: 'Your dog is barking, which could indicate excitement.',
+            createdAt: '2024-03-13T16:45:00Z',
+          },
+        ],
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.get('/api/behavior/history');
+  //   return response.data;
+  // } catch (error: any) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
+
+// Description: Save behavior detection to history
+// Endpoint: POST /api/behavior/save
+// Request: { image: string, behavior: string, confidence: number, description: string }
+// Response: { detection: BehaviorDetection, message: string }
+export const saveBehaviorDetection = async (data: { image: string; behavior: string; confidence: number; description: string }) => {
+  // Mocking the response
+  return new Promise<{ detection: BehaviorDetection; message: string }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        detection: {
+          _id: Date.now().toString(),
+          userId: 'user1',
+          image: data.image,
+          behavior: data.behavior as unknown,
+          confidence: data.confidence,
+          description: data.description,
+          createdAt: new Date().toISOString(),
+        },
+        message: 'Detection saved to history!',
+      });
+    }, 500);
+  });
+  // Uncomment the below lines to make an actual API call
+  // try {
+  //   const response = await api.post('/api/behavior/save', data);
+  //   return response.data;
+  // } catch (error: unknown) {
+  //   throw new Error(error?.response?.data?.message || error.message);
+  // }
+};
