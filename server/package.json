@@ -37,7 +37,8 @@
     "mongoose": "^8.1.1",
     "openai": "^4.104.0",
     "pino": "^9.5.0",
-    "shared": "file:../shared"
+    "shared": "file:../shared",
+    "twilio": "^5.13.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
