@@ -179,10 +179,11 @@ export const createLostPet = async (data: any, userId: string) => {
   });
 
   // 4. Prepare SMS message
-  const message = `🚨 Lost Dog Alert!
+  const message = `🚨 Lost Dog Alert
 Name: ${data.name}
 Last Seen: ${data.lastSeenLocation}
-Contact: ${data.contactPhone}`;
+Contact: ${data.contactPhone}
+You can find more details and updates here: https://furrypetss7.vercel.app/`;
 
   // 5. Send SMS to each nearby user
   for (const user of nearbyUsers) {
